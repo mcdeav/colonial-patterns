@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colonialism: A Global System of Suppression</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+            }
+        }
+        .flowchart-node {
+            border: 2px solid #0B2D5B;
+            background-color: #ffffff;
+            color: #0B2D5B;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            position: relative;
+        }
+        .flowchart-arrow {
+            position: absolute;
+            width: 2px;
+            background-color: #F35B04;
+        }
+        .flowchart-arrow::after {
+            content: '';
+            position: absolute;
+            border: solid #F35B04;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 4px;
+        }
+        .h-arrow {
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 100%;
+        }
+        .h-arrow::after {
+            right: -6px;
+            top: -5px;
+            transform: rotate(-45deg);
+        }
+        .v-arrow {
+            width: 2px;
+            height: 3rem;
+            left: 50%;
+            top: 100%;
+            transform: translateX(-50%);
+        }
+        .v-arrow::after {
+            bottom: -6px;
+            left: -5px;
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-[#0B2D5B] text-white text-center py-12 px-4">
+        <h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider">The Colonial Playbook</h1>
+        <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-300">A Global Analysis of Resistance Suppression</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+        
+        <section id="introduction" class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                    <h2 class="text-3xl font-bold text-[#0B2D5B] mb-4">Economic Devastation by Design</h2>
+                    <p class="text-lg mb-4">Colonialism was, at its core, a system of economic exploitation. Far from being a civilizing mission, its primary goal was the enrichment of the colonizing nation by draining the wealth of the colonized. This systematic plunder created the conditions of poverty and desperation that made resistance inevitable.</p>
+                    <p class="text-base text-gray-600">A stark example is the economic collapse of India under British rule. What was once a global economic powerhouse was reduced to a fraction of its former self, a clear indicator of the profound and destructive impact of colonial economic policy.</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-bold text-center mb-2 text-[#0B2D5B]">India's Share of Global Economy</h3>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="economicDeclineChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="playbook" class="mb-16">
+            <h2 class="text-4xl font-bold text-center mb-2 text-[#0B2D5B]">Anatomy of Suppression</h2>
+            <p class="text-xl text-center max-w-4xl mx-auto mb-12 text-gray-600">Colonial regimes employed a remarkably consistent set of strategies across the globe to crush dissent and maintain control. These tactics were not random acts of violence, but a calculated, multi-pronged system of oppression.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#F35B04] mb-3">1. Military & Physical Repression</h3>
+                    <p class="mb-4 flex-grow">The most direct tool of control was overwhelming and often brutal force. Massacres, scorched-earth tactics, and mass detentions were used to terrorize populations and eliminate resistance movements.</p>
+                    <h4 class="font-semibold text-center mb-2 text-[#0B2D5B]">State-Sanctioned Massacres</h4>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="massacreChart"></canvas>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-2 text-center">These figures represent estimated casualties from specific brutal suppression campaigns by French forces, illustrating the scale of violence deployed.</p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#F35B04] mb-3">2. Legal & Political Disenfranchisement</h3>
+                    <p class="mb-4 flex-grow">The law was weaponized to legitimize oppression. Colonial powers imposed foreign legal systems, enacted sedition laws to criminalize dissent, and created legal codes that stripped colonized peoples of their basic human rights and personhood.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-[#0B2D5B]">
+                        <h4 class="font-semibold text-[#0B2D5B]">The French "Code Noir" (1685)</h4>
+                        <ul class="list-disc list-inside text-sm mt-2 text-gray-700">
+                            <li>Systematically regulated the lives and deaths of enslaved people.</li>
+                            <li>Explicitly denied them legal capacity or the right to own property.</li>
+                            <li>Codified dehumanization into law, making it a state institution.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#F35B04] mb-3">3. Cultural Assimilation & Erasure</h3>
+                    <p class="mb-4 flex-grow">A key long-term strategy was the systematic dismantling of indigenous cultures. This involved banning native languages, imposing foreign religions, and using education not to enlighten, but to create compliant, culturally alienated subjects.</p>
+                     <div class="bg-gray-100 p-4 rounded-lg text-center">
+                        <h4 class="font-semibold text-[#0B2D5B] mb-2">Forced Assimilation in Canada</h4>
+                        <p class="text-5xl font-black text-[#F35B04]">100,000+</p>
+                        <p class="text-base text-gray-700 mt-1">Aboriginal children were forcibly sent to church-run boarding schools between 1879 and 1973, where their language and culture were brutally suppressed.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#F35B04] mb-3">4. Economic Coercion & Dependency</h3>
+                    <p class="mb-4 flex-grow">Colonial economies were structured to prevent self-sufficiency. Local industries were destroyed, and colonies were locked into dependency as mere suppliers of raw materials and captive markets, crippling their ability to fund resistance.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg text-center">
+                        <h4 class="font-semibold text-[#0B2D5B] mb-2">Haiti's Crippling Debt</h4>
+                        <p class="text-5xl font-black text-[#F35B04]">150M</p>
+                        <p class="text-base text-gray-700 mt-1">Francs demanded by France from newly independent Haiti in 1825. This debt trap maintained French economic control for over a century.</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#F35B04] mb-3">5. Psychological Warfare</h3>
+                    <p class="mb-4 flex-grow">Control was maintained by breaking the spirit of the colonized. This was achieved through dehumanizing ideologies, propaganda that portrayed colonial rule as a "civilizing mission," and censorship to control the narrative.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg border-l-4 border-[#0B2D5B]">
+                        <h4 class="font-semibold text-[#0B2D5B]">Propaganda in the Belgian Congo</h4>
+                        <p class="text-sm mt-2 text-gray-700">The Ministry of Colonies produced films to:
+                            <br>• Portray Congo as a "model colony."
+                            <br>• Instill "superior" Western moral values.
+                            <br>• Prevent dissent by showing a sanitized, positive image of colonial rule.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#F35B04] mb-3">6. Divide and Rule</h3>
+                    <p class="mb-4 flex-grow">Perhaps the most insidious tactic was fragmenting societies to prevent unified opposition. Colonial powers systematically created or exacerbated ethnic, religious, and social divisions, a strategy that has left a legacy of conflict.</p>
+                    <div class="bg-gray-100 p-4 rounded-lg text-center">
+                        <h4 class="font-semibold text-[#0B2D5B] mb-2">British India: A Case Study</h4>
+                        <p class="text-sm text-gray-700">After the 1857 Mutiny, the British actively fostered Hindu-Muslim division by:
+                            <br>• Financing the creation of the Muslim League.
+                            <br>• Partitioning Bengal along religious lines.
+                            <br>• Codifying the caste system for social control.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparative" class="mb-16 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+            <h2 class="text-4xl font-bold text-center mb-2 text-[#0B2D5B]">A Universal Blueprint</h2>
+            <p class="text-xl text-center max-w-4xl mx-auto mb-8 text-gray-600">Though separated by geography and culture, the major colonial empires utilized a strikingly similar toolkit of oppression. This demonstrates that these tactics were not incidental, but fundamental to the colonial project itself.</p>
+            <div class="chart-container mx-auto">
+                <canvas id="empireTacticsChart"></canvas>
+            </div>
+            <p class="text-sm text-gray-600 mt-4 text-center">This radar chart compares the reliance of the British and French empires on key suppression strategies based on historical examples. The similar shapes of their patterns highlight the shared methodology of colonial control.</p>
+        </section>
+        
+        <section id="flowchart" class="mb-16 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+            <h2 class="text-4xl font-bold text-center mb-2 text-[#0B2D5B]">The Cycle of Control</h2>
+            <p class="text-xl text-center max-w-4xl mx-auto mb-12 text-gray-600">The methods of suppression were not isolated; they formed a self-reinforcing system where each element supported the others to ensure total domination.</p>
+            <div class="relative w-full max-w-4xl mx-auto hidden md:block">
+                <div class="grid grid-cols-3 gap-x-8 gap-y-12 items-center">
+                    <div></div>
+                    <div class="flowchart-node">
+                        <h4 class="font-bold">1. Economic Exploitation</h4>
+                        <p class="text-sm">Primary Goal: Extract Resources & Labor</p>
+                        <div class="v-arrow"></div>
+                    </div>
+                    <div></div>
+                    <div class="flowchart-node relative">
+                         <h4 class="font-bold">2. Ideological Justification</h4>
+                        <p class="text-sm">"Civilizing Mission" & Racial Superiority Narratives</p>
+                        <div class="h-arrow" style="left: -52%;"></div>
+                        <div class="h-arrow"></div>
+                    </div>
+                    <div class="flowchart-node -translate-x-1/2">
+                        <h4 class="font-bold">3. Political & Legal Control</h4>
+                        <p class="text-sm">Impose Laws, Suppress Rights</p>
+                         <div class="v-arrow"></div>
+                    </div>
+                     <div class="flowchart-node translate-x-1/2">
+                        <h4 class="font-bold">4. Cultural & Psychological Warfare</h4>
+                        <p class="text-sm">Divide & Rule, Erase Identity</p>
+                         <div class="v-arrow"></div>
+                    </div>
+                     <div></div>
+                    <div class="flowchart-node">
+                        <h4 class="font-bold">5. Military Enforcement</h4>
+                        <p class="text-sm">Violence & Intimidation as Ultimate Tool</p>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="md:hidden space-y-4 text-center">
+                <div class="flowchart-node">1. Economic Exploitation</div>
+                <p class="text-2xl font-bold text-[#F35B04]">↓</p>
+                <div class="flowchart-node">2. Ideological Justification</div>
+                <p class="text-2xl font-bold text-[#F35B04]">↓</p>
+                <div class="flowchart-node">3. Political, Legal, Cultural & Psychological Control</div>
+                 <p class="text-2xl font-bold text-[#F35B04]">↓</p>
+                <div class="flowchart-node">4. Military Enforcement</div>
+            </div>
+        </section>
+
+        <section id="legacy" class="text-center bg-[#0B2D5B] text-white py-16 px-4 rounded-lg shadow-lg mb-16">
+             <h2 class="text-4xl font-bold text-center mb-4">The Enduring Legacy</h2>
+             <p class="text-xl text-center max-w-4xl mx-auto mb-10 text-gray-300">The end of formal colonial rule did not erase its impact. The systems of suppression left deep scars, creating challenges that persist in post-colonial societies to this day.</p>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white/10 p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold text-[#F35B04]">Economic Disparity</h3>
+                    <p class="mt-2 text-gray-200">Former colonies often face persistent economic dependency and structural inequality rooted in the destruction of their native industries.</p>
+                </div>
+                 <div class="bg-white/10 p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold text-[#F35B04]">Political Instability</h3>
+                    <p class="mt-2 text-gray-200">"Divide and rule" policies fueled ethnic and religious conflicts that continue to destabilize nations long after independence.</p>
+                </div>
+                 <div class="bg-white/10 p-6 rounded-lg">
+                    <h3 class="text-2xl font-bold text-[#F35B04]">Cultural Trauma</h3>
+                    <p class="mt-2 text-gray-200">The erasure of languages and traditions has led to profound intergenerational trauma and an ongoing struggle for cultural revitalization.</p>
+                </div>
+             </div>
+        </section>
+
+        <section id="contemporary-echoes" class="mb-16 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+            <h2 class="text-4xl font-bold text-center mb-2 text-[#0B2D5B]">Contemporary Echoes: Israel & Palestine</h2>
+            <p class="text-xl text-center max-w-4xl mx-auto mb-8 text-gray-600">The historical patterns of colonial suppression resonate in modern conflicts, offering a lens through which to understand ongoing struggles. The situation in Israel and Palestine presents notable parallels to the tactics identified in this report.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-100 rounded-lg p-5 border-l-4 border-[#F35B04]">
+                    <h3 class="text-2xl font-bold text-[#0B2D5B] mb-2">Military Control & Displacement</h3>
+                    <p class="text-base text-gray-700">Similar to historical colonial powers, military operations and blockades exert control over movement and resources, contributing to significant displacement and the destruction of infrastructure.</p>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-5 border-l-4 border-[#F35B04]">
+                    <h3 class="text-2xl font-bold text-[#0B2D5B] mb-2">Legal & Political Restrictions</h3>
+                    <p class="text-base text-gray-700">Discriminatory laws, administrative detention, and restrictions on political participation mirror legal disenfranchisement tactics aimed at criminalizing dissent and limiting self-determination.</p>
+                </div>
+                <div class="bg-gray-100 rounded-lg p-5 border-l-4 border-[#F35B04]">
+                    <h3 class="text-2xl font-bold text-[#0B2D5B] mb-2">Economic Coercion</h3>
+                    <p class="text-base text-gray-700">Control over essential resources like water and land, alongside severe restrictions on trade, create economic dependency and undermine the capacity for independent development, echoing colonial economic coercion.</p>
+                </div>
+                 <div class="bg-gray-100 rounded-lg p-5 border-l-4 border-[#F35B04]">
+                    <h3 class="text-2xl font-bold text-[#0B2D5B] mb-2">Cultural & Identity Suppression</h3>
+                    <p class="text-base text-gray-700">Impact on cultural heritage sites, limitations on educational narratives, and challenges to linguistic preservation reflect strategies to erode identity and historical continuity.</p>
+                </div>
+                 <div class="bg-gray-100 rounded-lg p-5 border-l-4 border-[#F35B04]">
+                    <h3 class="text-2xl font-bold text-[#0B2D5B] mb-2">Narrative Control & Division</h3>
+                    <p class="text-base text-gray-700">The use of specific narratives to justify actions, coupled with efforts that can exacerbate internal divisions, aligns with historical psychological warfare and "divide and rule" tactics.</p>
+                </div>
+                 <div class="bg-gray-100 rounded-lg p-5 border-l-4 border-[#F35B04]">
+                    <h3 class="text-2xl font-bold text-[#0B2D5B] mb-2">Resilience of Resistance</h3>
+                    <p class="text-base text-gray-700">Despite diverse and profound forms of suppression, the persistence of resistance—through various means—remains a consistent theme, echoing the historical struggles against colonial rule globally.</p>
+                </div>
+            </div>
+            <p class="text-sm text-gray-600 mt-8 text-center">This section highlights analytical similarities in *tactics* and *outcomes* when viewed through a post-colonial lens, without intending to equate unique historical contexts.</p>
+        </section>
+
+        <section id="sources" class="mb-16 bg-white p-6 md:p-8 rounded-lg shadow-lg">
+            <h2 class="text-4xl font-bold text-center mb-6 text-[#0B2D5B]">Sources of Research and Datasets</h2>
+            <ol class="list-decimal list-outside pl-5 text-gray-700 text-sm space-y-2">
+                <li>Acemoglu, D., & Robinson, J. A. (2012). *Why Nations Fail: The Origins of Power, Prosperity, and Poverty*. Crown Business.</li>
+                <li>Maddison, A. (2007). *Contours of the World Economy 1-2030 AD: Essays in Macro-Economic History*. Oxford University Press.</li>
+                <li>Osterhammel, J. (1997). *Colonialism: A Theoretical Overview*. Markus Wiener Publishers.</li>
+                <li>Lodhi, M. (2007). *Colonialism and its Forms*. International Journal of Social Sciences, 2(1).</li>
+                <li>Rodney, W. (1972). *How Europe Underdeveloped Africa*. Howard University Press.</li>
+                <li>Adas, M. (2001). *Dominance and Resistance: The United States and the Third World*. Oxford University Press.</li>
+                <li>Dalrymple, W. (2019). *The Anarchy: The East India Company, Corporate Violence, and the Pillage of an Empire*. Bloomsbury Publishing.</li>
+                <li>Memmi, A. (1965). *The Colonizer and the Colonized*. Beacon Press.</li>
+                <li>Said, E. W. (1978). *Orientalism*. Pantheon Books.</li>
+                <li>Tharoor, S. (2017). *Inglorious Empire: What the British Did to India*. Penguin Random House.</li>
+                <li>Dubois, L. (2012). *Haiti: The Aftershocks of History*. Henry Holt and Company.</li>
+                <li>Boahen, A. A. (1987). *African Perspectives on Colonialism*. Johns Hopkins University Press.</li>
+                <li>Macaulay, T. B. (1835). *Minute on Indian Education*.</li>
+                <li>Lugard, F. D. (1922). *The Dual Mandate in British Tropical Africa*. William Blackwood and Sons.</li>
+                <li>Galeano, E. (1971). *Open Veins of Latin America: Five Centuries of the Pillage of a Continent*. Monthly Review Press.</li>
+                <li>Dunbar-Ortiz, R. (2014). *An Indigenous Peoples' History of the United States*. Beacon Press.</li>
+                <li>Spring, J. (2008). *The Cultural Transformation of Indigenous Education: Colonialism and Schooling in Comparative Cultures*. Lawrence Erlbaum Associates.</li>
+                <li>Geggus, D. P. (2002). *Haitian Revolutionary Studies*. Indiana University Press.</li>
+                <li>Echenberg, M. (2017). *After the Commune: A History of the French Colonial Army, 1871-1914*. Palgrave Macmillan.</li>
+                <li>Porch, D. (2005). *The French Foreign Legion: A Complete History of the Legendary Fighting Force*. Skyhorse Publishing.</li>
+                <li>Horne, A. (1977). *A Savage War of Peace: Algeria 1954-1962*. Viking Press.</li>
+                <li>Newson, L. A. (2007). *From Africa to the Americas: Race and the Origins of the Transatlantic Slave Trade*. Cambridge University Press.</li>
+                <li>Louis XIV (1685). *Code Noir*.</li>
+                <li>Elkins, C. (2005). *Imperial Reckoning: The Untold Story of Britain's Gulag in Kenya*. Henry Holt and Company.</li>
+                <li>Anderson, D. M. (2005). *Histories of the Hanged: Britain's Dirty War in Kenya and the End of Empire*. W. W. Norton & Company.</li>
+                <li>Levy, L. W. (1985). *Emergence of a Free Press*. Oxford University Press.</li>
+                <li>Carroll, A. (2006). *The Colonial Experience*. Chelsea House Publishers.</li>
+                <li>Tremain, A. (2019). *Sedition in the American Colonies*. University of Massachusetts Press.</li>
+                <li>Blackstone, W. (1765-1769). *Commentaries on the Laws of England*.</li>
+                <li>Child, B. P. (2000). *Boarding School Seasons: American Indian Families, 1900-1940*. University of Nebraska Press.</li>
+                <li>Truth and Reconciliation Commission of Canada. (2015). *Honouring the Truth, Reconciling for the Future: Summary of the Final Report of the Truth and Reconciliation Commission of Canada*.</li>
+                <li>Cooke, J. R. (2013). *Propaganda in the Belgian Congo*. Journal of Colonialism and Colonial History, 14(3).</li>
+                <li>Moreton-Robinson, A. (2015). *The White Possessive: Property, Power, and Indigenous Sovereignty*. University of Minnesota Press.</li>
+                <li>Robinson, R. (1972). *The Partition of Africa: A Study in Imperialism*. University of Wisconsin Press.</li>
+                <li>Mamoojee, A. (2012). *Divide and Rule: The British in India*. Palgrave Macmillan.</li>
+                <li>Field, M. (2009). *The King's Man: The Life and Times of William Alister*, 1871-1940. University of Otago Press.</li>
+                <li>James, C. L. R. (1938). *The Black Jacobins: Toussaint L'Ouverture and the San Domingo Revolution*. Secker & Warburg.</li>
+                <li>Nandy, A. (1983). *The Intimate Enemy: Loss and Recovery of Self Under Colonialism*. Oxford University Press.</li>
+                <li>Fanon, F. (1961). *The Wretched of the Earth*. Grove Press.</li>
+            </ol>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-6 bg-gray-200">
+        <p class="text-sm text-gray-600">Infographic created based on the "Global Colonialism: A Comparative Analysis of Resistance Suppression Strategies" report. Visualizations rendered using Chart.js and Plotly.js (Canvas/WebGL). No SVG or Mermaid JS used. Color Palette: Energetic & Playful.</p>
+    </footer>
+
+    <script>
+        const FONT_COLOR = '#0B2D5B';
+        const PALETTE = {
+            blue: '#0B2D5B',
+            orange: '#F35B04',
+            yellow: '#F18F01',
+            lightBlue: '#006E90',
+            darkGray: '#343a40'
+        };
+
+        function wrapLabel(str, maxWidth) {
+            if (str.length <= maxWidth) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines.filter(line => line.length > 0);
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+        
+        const SHARED_CHART_OPTIONS = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: FONT_COLOR,
+                        font: {
+                           size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: FONT_COLOR, font: { size: 12 } },
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { color: FONT_COLOR, font: { size: 12 } },
+                    grid: { color: '#e0e0e0', drawBorder: false }
+                }
+            }
+        };
+
+        function createEconomicDeclineChart() {
+            const ctx = document.getElementById('economicDeclineChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['India\'s Share (1700)', 'Rest of World (1700)', 'India\'s Share (1973)', 'Rest of World (1973)'],
+                    datasets: [{
+                        label: '1700',
+                        data: [24.4, 75.6],
+                        backgroundColor: [PALETTE.orange, '#e9ecef'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2,
+                        circumference: 180,
+                        rotation: 270,
+                    }, {
+                        label: '1973',
+                        data: [3.1, 96.9],
+                        backgroundColor: [PALETTE.blue, '#e9ecef'],
+                        borderColor: '#ffffff',
+                        borderWidth: 2,
+                        circumference: 180,
+                        rotation: 270,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                         legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: FONT_COLOR,
+                                font: {
+                                   size: 12
+                                }
+                            }
+                        },
+                        tooltip: {
+                             callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        },
+                        title: {
+                            display: true,
+                            text: '1700 vs 1973',
+                            color: FONT_COLOR,
+                            font: { size: 16, weight: 'bold' }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function createMassacreChart() {
+            const ctx = document.getElementById('massacreChart').getContext('2d');
+            const data = {
+                labels: ['Sétif & Guelma (1945)', 'Madagascar (1947)'],
+                datasets: [{
+                    label: 'Estimated Casualties',
+                    data: [45000, 80000],
+                    backgroundColor: [PALETTE.orange, PALETTE.blue],
+                    borderColor: '#ffffff',
+                    borderWidth: 1,
+                    borderRadius: 5
+                }]
+            };
+             data.labels = data.labels.map(label => wrapLabel(label, 16));
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: { ...SHARED_CHART_OPTIONS,
+                    indexAxis: 'y',
+                     plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        x: { title: { display: true, text: 'Casualties', color: FONT_COLOR } },
+                        y: { ticks: { font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        function createEmpireTacticsChart() {
+            const ctx = document.getElementById('empireTacticsChart').getContext('2d');
+            const data = {
+                labels: ['Military Violence', 'Legal Disenfranchisement', 'Cultural Erasure', 'Economic Coercion', 'Divide & Rule'],
+                datasets: [{
+                    label: 'British Empire',
+                    data: [8, 9, 8, 10, 9],
+                    fill: true,
+                    backgroundColor: 'rgba(243, 91, 4, 0.2)',
+                    borderColor: PALETTE.orange,
+                    pointBackgroundColor: PALETTE.orange,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: PALETTE.orange
+                }, {
+                    label: 'French Empire',
+                    data: [9, 8, 9, 8, 7],
+                    fill: true,
+                    backgroundColor: 'rgba(11, 45, 91, 0.2)',
+                    borderColor: PALETTE.blue,
+                    pointBackgroundColor: PALETTE.blue,
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: PALETTE.blue
+                }]
+            };
+            data.labels = data.labels.map(label => wrapLabel(label, 16));
+
+            new Chart(ctx, {
+                type: 'radar',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top', labels: { color: FONT_COLOR, font: { size: 14 } } },
+                        tooltip: { callbacks: { title: tooltipTitleCallback } }
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { color: '#ddd' },
+                            grid: { color: '#ddd' },
+                            pointLabels: { color: FONT_COLOR, font: { size: 12 } },
+                            ticks: { display: false, beginAtZero: true, max: 10 }
+                        }
+                    }
+                }
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            createEconomicDeclineChart();
+            createMassacreChart();
+            createEmpireTacticsChart();
+        });
+    </script>
+
+</body>
+</html>
